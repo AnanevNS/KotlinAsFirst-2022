@@ -36,7 +36,41 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Дан номер месяца (от 1 до 12 включительно) и год (положительный).
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
-fun daysInMonth(month: Int, year: Int): Int = TODO()
+fun daysInMonth(month: Int, year: Int): Int {
+    var leapyear: Boolean
+    if (year%4==0){
+        if (year%400==0 && year%100==0){
+            leapyear = true
+        }else if (year%100!=0){
+            leapyear = true
+        }else leapyear = false
+    }else leapyear = false
+    if (leapyear==true){
+        when (month){
+            1 -> return 31
+            2 -> return 29
+            3 -> return 31
+            5 -> return 31
+            7 -> return 31
+            8 -> return 31
+            10 -> return 31
+            12 -> return 31
+            else -> return 30
+        }
+    }else{
+        when (month){
+            1 -> return 31
+            2 -> return 28
+            3 -> return 31
+            5 -> return 31
+            7 -> return 31
+            8 -> return 31
+            10 -> return 31
+            12 -> return 31
+            else -> return 30
+        }
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -59,4 +93,17 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    var min: Int
+    if (a*b<=b*c){
+        if (a*b<=c*a){
+            min = a*b
+        }else min = a*c
+    }else if  (b*c<=a*c){
+        min = b*c
+    }else min = a*c
+
+    if (min<=r*s){
+        return true
+    }else return false
+}

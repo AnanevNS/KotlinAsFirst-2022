@@ -4,6 +4,7 @@ package lesson2.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.max
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
@@ -68,7 +69,15 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    if (age%100>=5 && age%100<=20){
+        return ("$age лет")
+    }else if (age%10==1){
+        return ("$age год")
+    }else if (age%10==2 ||age%10==3||age%10==4){
+        return ("$age года")
+    }else return ("$age лет")
+}
 
 /**
  * Простая (2 балла)
@@ -80,8 +89,15 @@ fun ageDescription(age: Int): String = TODO()
 fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
-    t3: Double, v3: Double
-): Double = TODO()
+    t3: Double, v3: Double,
+): Double {
+    var s = t1*v1+t2*v2+t3*v3
+    var v = (v1+v2+v3)/3.0
+    var hp = s/(2.0*v)
+    return hp
+}
+
+
 
 /**
  * Простая (2 балла)
@@ -122,7 +138,18 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    var cosA = (b.pow(2)+c.pow(2)-a.pow(2))/(2.0*b*c)
+    var cosB = (a.pow(2)+c.pow(2)-b.pow(2))/(2.0*a*c)
+    var cosC = (b.pow(2)+a.pow(2)-c.pow(2))/(2.0*b*a)
+    if (a+b<c || b+c<a || a+c<b){
+        return -1
+    }else if (cosA<0 || cosB<0 || cosC<0){
+        return 2
+    }else if (cosA==0.0 || cosB==0.0 || cosC==0.0){
+        return 1
+    }else return 0
+}
 
 /**
  * Средняя (3 балла)
@@ -132,4 +159,20 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+val why: Int = -1
+fun segmentLength(a: Int, b: Int, c: Int, d: Int, ): Int {
+    if (a<=c && b>=d && a<d){
+        return (d-c)
+    }else if (a<=c && b<d && a<d){
+        return (b-c)
+    }else if (b==c){
+        return 0
+    }else if (c<a && d>=b && d>a){
+        return (b-a)
+    }else if (c<a && d<b && d>a){
+        return (d-a)
+    }else if (d==a){
+        return 0
+    }else return -1
+}
+
