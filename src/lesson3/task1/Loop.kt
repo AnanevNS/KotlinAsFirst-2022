@@ -1,8 +1,8 @@
 @file:Suppress("UNUSED_PARAMETER")
 
 package lesson3.task1
-
 import kotlin.math.sqrt
+
 
 // Урок 3: циклы
 // Максимальное количество баллов = 9
@@ -129,7 +129,20 @@ fun lcm(m: Int, n: Int): Int = TODO()
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean {
+    var CoPrime: Boolean = true
+    if (m>=n){
+        for (i in 2..n){
+            if (m%i==0 && n%i==0) CoPrime = false
+        }
+        return CoPrime
+    }else{
+        for (i in 2..m){
+            if (m%i==0 && n%i==0) CoPrime = false
+        }
+        return CoPrime
+    }
+}
 
 /**
  * Средняя (3 балла)
@@ -192,7 +205,30 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var count: Int = 0
+    var lenX: Int = 0
+    var x: Int
+    var y: Int
+    while (lenX<n){
+        count++
+        x = count*count
+        while (x!=0){
+            x = x/10
+            lenX++
+        }
+    }
+    y = count*count
+    if (lenX!=n){
+        while (lenX!=n){
+            y = y/10
+            lenX--
+        }
+    }else y = y%10
+    return y%10
+
+
+}
 
 /**
  * Сложная (5 баллов)
