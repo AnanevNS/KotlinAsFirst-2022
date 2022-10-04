@@ -45,30 +45,16 @@ fun daysInMonth(month: Int, year: Int): Int {
             leapyear = true
         }else leapyear = false
     }else leapyear = false
-    if (leapyear==true){
-        when (month){
-            1 -> return 31
-            2 -> return 29
-            3 -> return 31
-            5 -> return 31
-            7 -> return 31
-            8 -> return 31
-            10 -> return 31
-            12 -> return 31
-            else -> return 30
-        }
-    }else{
-        when (month){
-            1 -> return 31
-            2 -> return 28
-            3 -> return 31
-            5 -> return 31
-            7 -> return 31
-            8 -> return 31
-            10 -> return 31
-            12 -> return 31
-            else -> return 30
-        }
+    when (month){
+        1 -> return 31
+        2 -> return if (leapyear) 29 else 28
+        3 -> return 31
+        5 -> return 31
+        7 -> return 31
+        8 -> return 31
+        10 -> return 31
+        12 -> return 31
+        else -> return 30
     }
 }
 
@@ -94,16 +80,10 @@ fun circleInside(
  * Вернуть true, если кирпич пройдёт
  */
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
-    var min: Int
-    if (a*b<=b*c){
-        if (a*b<=c*a){
-            min = a*b
-        }else min = a*c
-    }else if  (b*c<=a*c){
-        min = b*c
-    }else min = a*c
-
-    if (min<=r*s){
-        return true
-    }else return false
+    when{
+        a<=r && (b<=s || c<=s) -> return true
+        b<=r && (a<=s || c<=s) -> return true
+        c<=r && (b<=s || a<=s) -> return true
+        else -> return false
+    }
 }
