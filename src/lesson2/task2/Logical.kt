@@ -37,24 +37,12 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
 fun daysInMonth(month: Int, year: Int): Int {
-    var leapyear: Boolean
-    if (year%4==0){
-        if (year%400==0 && year%100==0){
-            leapyear = true
-        }else if (year%100!=0){
-            leapyear = true
-        }else leapyear = false
-    }else leapyear = false
-    when (month){
-        1 -> return 31
-        2 -> return if (leapyear) 29 else 28
-        3 -> return 31
-        5 -> return 31
-        7 -> return 31
-        8 -> return 31
-        10 -> return 31
-        12 -> return 31
-        else -> return 30
+    var leapyear: Boolean = false
+    if ((year%4==0 && year%100!=0) || (year%400==0 && year%100==0)) leapyear = true
+    return when (month){
+        1, 3, 5, 7, 8, 10, 12 -> 31
+        2 -> if (leapyear) 29 else 28
+        else -> 30
     }
 }
 
@@ -79,11 +67,11 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean =
     when{
-        a<=r && (b<=s || c<=s) -> return true
-        b<=r && (a<=s || c<=s) -> return true
-        c<=r && (b<=s || a<=s) -> return true
-        else -> return false
+        a<=r && (b<=s || c<=s) -> true
+        b<=r && (a<=s || c<=s) -> true
+        c<=r && (b<=s || a<=s) -> true
+        else -> false
     }
-}
+

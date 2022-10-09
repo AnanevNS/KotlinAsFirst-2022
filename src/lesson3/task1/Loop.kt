@@ -80,7 +80,19 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var count: Int = 1
+    var x: Int = 0
+    var y: Int = 1
+    var memberF: Int = 0
+    while (count!=n){
+        memberF = x+y
+        x = y
+        y = memberF
+        count++
+    }
+    if (n==1 || n==2) return 1 else return memberF
+}
 
 /**
  * Простая (2 балла)
@@ -130,17 +142,17 @@ fun lcm(m: Int, n: Int): Int = TODO()
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
 fun isCoPrime(m: Int, n: Int): Boolean {
-    var CoPrime: Boolean = true
+    var coPrime: Boolean = true
     if (m>=n){
         for (i in 2..n){
-            if (m%i==0 && n%i==0) CoPrime = false
+            if (m%i==0 && n%i==0) coPrime = false
         }
-        return CoPrime
+        return coPrime
     }else{
         for (i in 2..m){
-            if (m%i==0 && n%i==0) CoPrime = false
+            if (m%i==0 && n%i==0) coPrime = false
         }
-        return CoPrime
+        return coPrime
     }
 }
 
@@ -239,4 +251,25 @@ fun squareSequenceDigit(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var count: Int = 0
+    var lenX: Int = 0
+    var x: Int
+    var y: Int
+    while (lenX<n){
+        count++
+        x = fib(count)
+        while (x!=0){
+            x = x/10
+            lenX++
+        }
+    }
+    y = fib(count)
+    if (lenX!=n){
+        while (lenX!=n){
+            y = y/10
+            lenX--
+        }
+    }else y = y%10
+    return y%10
+}

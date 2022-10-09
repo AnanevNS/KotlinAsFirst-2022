@@ -70,11 +70,11 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String {
-    when{
-        age%100>=5 && age%100<=20 -> return ("$age лет")
-        age%10==1 -> return ("$age год")
-        age%10==2 || age%10==3 || age%10==4 -> return ("$age года")
-        else -> return ("$age лет")
+    return when{
+        age%100>=5 && age%100<=20 -> ("$age лет")
+        age%10==1 -> ("$age год")
+        age%10==2 || age%10==3 || age%10==4 -> ("$age года")
+        else -> ("$age лет")
     }
 }
 
@@ -137,13 +137,12 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
     var cosA = (b.pow(2)+c.pow(2)-a.pow(2))/(2.0*b*c)
     var cosB = (a.pow(2)+c.pow(2)-b.pow(2))/(2.0*a*c)
     var cosC = (b.pow(2)+a.pow(2)-c.pow(2))/(2.0*b*a)
-    if (a+b<c || b+c<a || a+c<b){
-        return -1
-    }else if (cosA<0 || cosB<0 || cosC<0){
-        return 2
-    }else if (cosA==0.0 || cosB==0.0 || cosC==0.0){
-        return 1
-    }else return 0
+    return when{
+        (a+b<c || b+c<a || a+c<b) -> -1
+        (cosA<0 || cosB<0 || cosC<0) -> 2
+        (cosA==0.0 || cosB==0.0 || cosC==0.0) -> 1
+        else -> 0
+    }
 }
 
 /**
@@ -155,16 +154,16 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int, ): Int {
-    when{
-        a>d -> return -1
-        a==d && c==d -> return 0
-        c>b -> return -1
-        b==c && b==d -> return 0
-        c<=a && d>=b -> return b-a
-        c<=a && d<=b -> return d-a
-        c>=a && d<=b -> return d-c
-        c<=b && d>=b -> return b-c
-        else -> return -1
+    return when{
+        a>d -> -1
+        a==d && c==d -> 0
+        c>b -> -1
+        b==c && b==d -> 0
+        c<=a && d>=b -> b-a
+        c<=a && d<=b -> d-a
+        c>=a && d<=b -> d-c
+        c<=b && d>=b -> b-c
+        else -> -1
     }
 }
 

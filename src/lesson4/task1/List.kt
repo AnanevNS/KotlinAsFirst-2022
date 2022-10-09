@@ -1,10 +1,11 @@
-@file:Suppress("UNUSED_PARAMETER", "ConvertCallChainIntoSequence")
+ @file:Suppress("UNUSED_PARAMETER", "ConvertCallChainIntoSequence")
 
 package lesson4.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.sqrt
-
+import kotlin.math.*
+import kotlin.math.pow
 // Урок 4: списки
 // Максимальное количество баллов = 12
 // Рекомендуемое количество баллов = 8
@@ -195,7 +196,17 @@ fun factorizeToString(n: Int): String = TODO()
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-fun convert(n: Int, base: Int): List<Int> = TODO()
+fun convert(n: Int, base: Int): List<Int> {
+    var items = mutableListOf<Int>()
+    var s:Int = 0
+    var b:Int = n
+    while (b!=0){
+        s = b%base
+        b = b/base
+        items.add(0, s)
+    }
+    return items
+}
 
 /**
  * Сложная (4 балла)
@@ -231,8 +242,30 @@ fun decimal(digits: List<Int>, base: Int): Int = TODO()
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, str.toInt(base)), запрещается.
  */
-fun decimalFromString(str: String, base: Int): Int = TODO()
-
+/*fun decimalFromString(str: String, base: Int): Double {
+    var s = mutableListOf<Char>()
+    var m = 10
+    var sum = 0.0
+    var abc = 0
+    for (i in 0..str.length-1){
+        s.add(i, str[i])
+    }
+    for (i in 'A'..'Z'){
+        for (p in 0..s.size-1){
+            if (s[p] == i) sum = sum + m*(base as Double).pow(p)
+        }
+        m++
+    }
+    for (i in 0..9){
+        for (a in 0..s.size-1){
+            if (s[a] == (i as Char)) sum = sum + abc*(base as Double).pow(a)
+        }
+        abc++
+    }
+    return sum
+}
+задумка была гениальная
+*/
 /**
  * Сложная (5 баллов)
  *
@@ -241,8 +274,43 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
-
+fun roman(n: Int): String {
+    var r: String = ""
+    var m = n
+    while (m!=0) {
+        when {
+            m/1000!=0 -> {r += "M"; m -= 1000}
+            m/900!=0 -> {r += "CM"; m -= 900}
+            m/800!=0 -> {r += "DCCC"; m -= 800}
+            m/700!=0 -> {r += "DCC"; m -= 700}
+            m/600!=0 -> {r += "DC"; m -= 600}
+            m/500!=0 -> {r += "D"; m -= 500}
+            m/400!=0 -> {r += "CD"; m -= 400}
+            m/300!=0 -> {r += "CCC"; m -= 300}
+            m/200!=0 -> {r += "CC"; m -= 200}
+            m/100!=0 -> {r += "C"; m -= 100}
+            m/90!=0 -> {r += "XC"; m -= 90}
+            m/80!=0 -> {r += "LXXX"; m -= 80}
+            m/70!=0 -> {r += "LXX"; m -= 70}
+            m/60!=0 -> {r += "LX"; m -= 60}
+            m/50!=0 -> {r += "L"; m -= 50}
+            m/40!=0 -> {r += "XL"; m -= 40}
+            m/30!=0 -> {r += "XXX"; m -= 30}
+            m/20!=0 -> {r += "XX"; m -= 20}
+            m/10!=0 -> {r += "X"; m -= 10}
+            m/9!=0 -> {r += "IX"; m -= 9}
+            m/8!=0 -> {r += "VIII"; m -= 8}
+            m/7!=0 -> {r += "VII"; m -= 7}
+            m/6!=0 -> {r += "VI"; m -= 6}
+            m/5!=0 -> {r += "V"; m -= 5}
+            m/4!=0 -> {r += "IV"; m -= 4}
+            m/3!=0 -> {r += "III"; m -= 3}
+            m/2!=0 -> {r += "II"; m -= 2}
+            m/1!=0 -> {r += "I"; m -= 1}
+        }
+    }
+    return r
+}
 /**
  * Очень сложная (7 баллов)
  *
