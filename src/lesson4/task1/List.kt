@@ -198,8 +198,8 @@ fun factorizeToString(n: Int): String = TODO()
  */
 fun convert(n: Int, base: Int): List<Int> {
     var items = mutableListOf<Int>()
-    var s:Int = 0
-    var b:Int = n
+    var s = 0
+    var b = n
     while (b!=0){
         s = b%base
         b = b/base
@@ -286,8 +286,6 @@ fun roman(n: Int): String {
             m/600!=0 -> {r += "DC"; m -= 600}
             m/500!=0 -> {r += "D"; m -= 500}
             m/400!=0 -> {r += "CD"; m -= 400}
-            m/300!=0 -> {r += "CCC"; m -= 300}
-            m/200!=0 -> {r += "CC"; m -= 200}
             m/100!=0 -> {r += "C"; m -= 100}
             m/90!=0 -> {r += "XC"; m -= 90}
             m/80!=0 -> {r += "LXXX"; m -= 80}
@@ -295,8 +293,6 @@ fun roman(n: Int): String {
             m/60!=0 -> {r += "LX"; m -= 60}
             m/50!=0 -> {r += "L"; m -= 50}
             m/40!=0 -> {r += "XL"; m -= 40}
-            m/30!=0 -> {r += "XXX"; m -= 30}
-            m/20!=0 -> {r += "XX"; m -= 20}
             m/10!=0 -> {r += "X"; m -= 10}
             m/9!=0 -> {r += "IX"; m -= 9}
             m/8!=0 -> {r += "VIII"; m -= 8}
@@ -304,8 +300,6 @@ fun roman(n: Int): String {
             m/6!=0 -> {r += "VI"; m -= 6}
             m/5!=0 -> {r += "V"; m -= 5}
             m/4!=0 -> {r += "IV"; m -= 4}
-            m/3!=0 -> {r += "III"; m -= 3}
-            m/2!=0 -> {r += "II"; m -= 2}
             m/1!=0 -> {r += "I"; m -= 1}
         }
     }
