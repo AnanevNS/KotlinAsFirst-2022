@@ -242,8 +242,8 @@ fun decimal(digits: List<Int>, base: Int): Int = TODO()
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, str.toInt(base)), запрещается.
  */
-/*fun decimalFromString(str: String, base: Int): Double {
-    var s = mutableListOf<Char>()
+fun decimalFromString(str: String, base: Int): Double = TODO()
+/*    var s = mutableListOf<Char>()
     var m = 10
     var sum = 0.0
     var abc = 0
