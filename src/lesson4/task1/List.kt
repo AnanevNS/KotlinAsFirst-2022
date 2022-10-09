@@ -2,8 +2,8 @@
 
 package lesson4.task1
 
-import lesson1.task1.discriminant
 import kotlin.math.sqrt
+import lesson1.task1.discriminant
 import kotlin.math.*
 import kotlin.math.pow
 // Урок 4: списки
@@ -200,11 +200,11 @@ fun convert(n: Int, base: Int): List<Int> {
     var items = mutableListOf<Int>()
     var s = 0
     var b = n
-    while (b!=0){
+    do{
         s = b%base
         b = b/base
         items.add(0, s)
-    }
+    }while (b!=0)
     return items
 }
 
