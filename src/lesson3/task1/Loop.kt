@@ -142,7 +142,7 @@ fun lcm(m: Int, n: Int): Int = TODO()
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
 fun isCoPrime(m: Int, n: Int): Boolean {
-    var coPrime: Boolean = true
+    var coPrime = true
     if (m>=n){
         for (i in 2..n){
             if (m%i==0 && n%i==0) coPrime = false

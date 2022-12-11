@@ -2,6 +2,8 @@
 
 package lesson5.task1
 
+import ru.spbstu.wheels.toMutableMap
+
 // Урок 5: ассоциативные массивы и множества
 // Максимальное количество баллов = 14
 // Рекомендуемое количество баллов = 9
@@ -156,7 +158,16 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
  *     mapOf("Emergency" to "911", "Police" to "02")
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
-fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> = TODO()
+fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
+    var book = mutableMapOf<String, String>()
+    book += mapA
+    for ((key, value) in mapB){
+        if (key in book == key in mapB && book[key] != mapB[key]){
+            book[key] += ", " + mapB[key]
+        }else book[key] = value
+    }
+    return book
+}
 
 /**
  * Средняя (4 балла)
@@ -210,7 +221,8 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
  * Например:
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
-fun extractRepeats(list: List<String>): Map<String, Int> = TODO()
+fun extractRepeats(list: List<String>): Map<String, Int> =
+    list.groupingBy { it }.eachCount().filter { (key, value) -> value > 1 }
 
 /**
  * Средняя (3 балла)

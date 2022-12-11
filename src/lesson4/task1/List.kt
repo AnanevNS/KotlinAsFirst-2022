@@ -128,8 +128,11 @@ fun abs(v: List<Double>): Double = TODO()
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
-
+fun mean(list: List<Double>): Double{
+    return if (list.size != 0){
+        list.sum()/list.size
+    }else 0.0
+ }
 /**
  * Средняя (3 балла)
  *
@@ -179,7 +182,6 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
  * Множители в списке должны располагаться по возрастанию.
  */
 fun factorize(n: Int): List<Int> = TODO()
-
 /**
  * Сложная (4 балла)
  *
@@ -187,7 +189,18 @@ fun factorize(n: Int): List<Int> = TODO()
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String {
+    var multipliers = mutableListOf<String>()
+    var copy = n
+    var m = 2
+    while (copy != 1) {
+        if (copy % m == 0) {
+            multipliers.add("$m")
+            copy /= m
+        } else m++
+    }
+    return multipliers.joinToString(separator = "*")
+}
 
 /**
  * Средняя (3 балла)
@@ -200,11 +213,11 @@ fun convert(n: Int, base: Int): List<Int> {
     var items = mutableListOf<Int>()
     var s = 0
     var b = n
-    do{
-        s = b%base
-        b = b/base
+    do {
+        s = b % base
+        b /= base
         items.add(0, s)
-    }while (b!=0)
+    } while (b != 0)
     return items
 }
 
@@ -243,29 +256,8 @@ fun decimal(digits: List<Int>, base: Int): Int = TODO()
  * (например, str.toInt(base)), запрещается.
  */
 fun decimalFromString(str: String, base: Int): Double = TODO()
-/*    var s = mutableListOf<Char>()
-    var m = 10
-    var sum = 0.0
-    var abc = 0
-    for (i in 0..str.length-1){
-        s.add(i, str[i])
-    }
-    for (i in 'A'..'Z'){
-        for (p in 0..s.size-1){
-            if (s[p] == i) sum = sum + m*(base as Double).pow(p)
-        }
-        m++
-    }
-    for (i in 0..9){
-        for (a in 0..s.size-1){
-            if (s[a] == (i as Char)) sum = sum + abc*(base as Double).pow(a)
-        }
-        abc++
-    }
-    return sum
-}
-задумка была гениальная
-*/
+
+
 /**
  * Сложная (5 баллов)
  *
@@ -275,35 +267,35 @@ fun decimalFromString(str: String, base: Int): Double = TODO()
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
 fun roman(n: Int): String {
-    var r: String = ""
+    var r = StringBuilder()
     var m = n
     while (m!=0) {
         when {
-            m/1000!=0 -> {r += "M"; m -= 1000}
-            m/900!=0 -> {r += "CM"; m -= 900}
-            m/800!=0 -> {r += "DCCC"; m -= 800}
-            m/700!=0 -> {r += "DCC"; m -= 700}
-            m/600!=0 -> {r += "DC"; m -= 600}
-            m/500!=0 -> {r += "D"; m -= 500}
-            m/400!=0 -> {r += "CD"; m -= 400}
-            m/100!=0 -> {r += "C"; m -= 100}
-            m/90!=0 -> {r += "XC"; m -= 90}
-            m/80!=0 -> {r += "LXXX"; m -= 80}
-            m/70!=0 -> {r += "LXX"; m -= 70}
-            m/60!=0 -> {r += "LX"; m -= 60}
-            m/50!=0 -> {r += "L"; m -= 50}
-            m/40!=0 -> {r += "XL"; m -= 40}
-            m/10!=0 -> {r += "X"; m -= 10}
-            m/9!=0 -> {r += "IX"; m -= 9}
-            m/8!=0 -> {r += "VIII"; m -= 8}
-            m/7!=0 -> {r += "VII"; m -= 7}
-            m/6!=0 -> {r += "VI"; m -= 6}
-            m/5!=0 -> {r += "V"; m -= 5}
-            m/4!=0 -> {r += "IV"; m -= 4}
-            m/1!=0 -> {r += "I"; m -= 1}
+            m/1000!=0 -> {r.append("M"); m -= 1000}
+            m/900!=0 -> {r.append("CM"); m -= 900}
+            m/800!=0 -> {r.append("DCCC"); m -= 800}
+            m/700!=0 -> {r.append("DCC"); m -= 700}
+            m/600!=0 -> {r.append("DC"); m -= 600}
+            m/500!=0 -> {r.append("D"); m -= 500}
+            m/400!=0 -> {r.append("CD"); m -= 400}
+            m/100!=0 -> {r.append("C"); m -= 100}
+            m/90!=0 -> {r.append("XC"); m -= 90}
+            m/80!=0 -> {r.append("LXXX"); m -= 80}
+            m/70!=0 -> {r.append("LXX"); m -= 70}
+            m/60!=0 -> {r.append("LX"); m -= 60}
+            m/50!=0 -> {r.append("L"); m -= 50}
+            m/40!=0 -> {r.append("XL"); m -= 40}
+            m/10!=0 -> {r.append("X"); m -= 10}
+            m/9!=0 -> {r.append("IX"); m -= 9}
+            m/8!=0 -> {r.append("VIII"); m -= 8}
+            m/7!=0 -> {r.append("VII"); m -= 7}
+            m/6!=0 -> {r.append("VI"); m -= 6}
+            m/5!=0 -> {r.append("V"); m -= 5}
+            m/4!=0 -> {r.append("IV"); m -= 4}
+            m/1!=0 -> {r.append("I"); m -= 1}
         }
     }
-    return r
+    return "$r"
 }
 /**
  * Очень сложная (7 баллов)
