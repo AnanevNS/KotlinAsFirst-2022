@@ -82,9 +82,17 @@ fun deleteMarked(inputName: String, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
-
-
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    var file = File(inputName).readText().lowercase()
+    var quantity = mutableMapOf<String, Int>()
+    for (n in substrings.indices) {
+        quantity[substrings[n]] = 0
+        for (m in file.indices){
+            if(file.startsWith(substrings[n].lowercase(), m)) quantity[substrings[n]] = 1 + quantity[substrings[n]]!!
+        }
+    }
+    return quantity
+}
 /**
  * Средняя (12 баллов)
  *
@@ -120,7 +128,19 @@ fun sibilants(inputName: String, outputName: String) {
  *
  */
 fun centerFile(inputName: String, outputName: String) {
-    TODO()
+    var outputStream = File(outputName).bufferedWriter()
+    var max = 0
+    for (ln in File(inputName).readLines()) if (ln.trim().length > max) max = ln.trim().length
+    for (ln in File(inputName).readLines()) {
+        var indent = (max - ln.trim().length) / 2
+        while (indent != 0) {
+            outputStream.write(" ")
+            indent -= 1
+        }
+        outputStream.write(ln.trim())
+        outputStream.newLine()
+    }
+    outputStream.close()
 }
 
 /**

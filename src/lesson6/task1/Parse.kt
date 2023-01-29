@@ -116,7 +116,17 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun bestLongJump(jumps: String): Int {
+    var max = -1
+    if (jumps.contains(Regex("""[^\d\-%\s]""")) || jumps.contains(Regex("""([%\-])(\d|-|%)|(\d|-|%)([%\-])""")))
+        return max
+    var list = Regex("""[\s\-%]""").split(jumps)
+    for (element in list) {
+        if (element.isNotEmpty() && element.toInt() > max) max = element.toInt()
+    }
+    return max
+}
+
 
 /**
  * Сложная (6 баллов)
@@ -130,7 +140,6 @@ fun bestLongJump(jumps: String): Int = TODO()
  * вернуть -1.
  */
 fun bestHighJump(jumps: String): Int = TODO()
-
 /**
  * Сложная (6 баллов)
  *
@@ -141,7 +150,6 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
 fun plusMinus(expression: String): Int = TODO()
-
 /**
  * Сложная (6 баллов)
  *
@@ -151,7 +159,15 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    var elements = str.split(Regex("""\s"""))
+    var count = 0
+    for (i in 1 until elements.size) {
+        if (elements[i - 1].equals(elements[i], ignoreCase = true) && elements.size != 1) return count
+        count += elements[i - 1].length + 1
+    }
+    return -1
+}
 
 /**
  * Сложная (6 баллов)
